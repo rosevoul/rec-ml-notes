@@ -1,13 +1,16 @@
+/* assets/css/style.scss */
 ---
 ---
 
-@import "minima";
+@import "{{ site.theme }}";
 
-/* Slightly tighter typography, still minimal */
-.post-content, .page-content {
-  max-width: 920px;
+/* Header nav alignment */
+.site-nav .btn {
+  margin-right: 0.35rem;
+  margin-bottom: 0.35rem;
 }
 
-h1, h2, h3 {
-  letter-spacing: -0.02em;
+/* Footer spacing */
+.site-footer {
+  margin-top: 2.5rem;
 }
