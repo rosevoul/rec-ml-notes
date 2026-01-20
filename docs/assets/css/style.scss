@@ -3,7 +3,28 @@
 
 @import "{{ site.theme }}";
 
-/* optional minimal tweaks */
-.site-footer {
-  margin-top: 3rem;
+/* FORCE LIGHT MODE */
+:root {
+  color-scheme: light;
+}
+
+body {
+  background-color: #ffffff;
+  color: #222222;
+}
+
+.page-header {
+  background-color: #f5f5f5;
+  background-image: none;
+  color: #222222;
+}
+
+.page-header h1,
+.page-header h2,
+.page-header p {
+  color: #222222;
+}
+
+a {
+  color: #0366d6;
 }
