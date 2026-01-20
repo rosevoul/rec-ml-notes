@@ -1,9 +1,8 @@
-# Faye Voulivasi
-Senior Machine Learning Engineer
-
-Applied ML · Ranking & Personalization · Scalable Decision Systems
-
 ---
+layout: default
+title: Home
+---
+
 <a id="perspective"></a>
 ## Perspective
 
@@ -108,11 +107,3 @@ Models that shape modern generative and personalization systems through represen
 
 - **A Unified Approach to Interpreting Model Predictions (SHAP)**  
   [paper](https://arxiv.org/abs/1705.07874) · [notes](paper_notes/shap)
-
-## Guiding Principle
-
-Production ML is a decision system first and a modeling exercise second.
-
----
-
-[LinkedIn](https://www.linkedin.com/in/rosevoul/) · [Email](mailto:faye.voulivasi@gmail.com)
