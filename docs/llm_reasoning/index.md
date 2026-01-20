@@ -45,7 +45,7 @@ Re-order items based on reasoning, not similarity.
 
 ---
 
-## Working illustrative example
+## Applied example
 
 - [LLM re-ranking notebook](https://github.com/rosevoul/rec-ml-notes/blob/main/notebooks/llm_rerank_toy.ipynb)
 
