@@ -8,8 +8,9 @@ The goal is to build working intuition around how different methods integrate
 into real-world ranking and recommendation pipelines.
 
 ## Topics
-- Graph-based recommendation
-- LLM-based reasoning in ranking pipelines
-- Multimodal recommendation
-- Generative sequence-based recommendation
+- [Graph-based recommendation](gnn/)
+- [LLM-based reasoning](llm_reasoning/)
+- [Multimodal recommendation](multimodal/)
+- [Generative recommendation](generative_rec/)
+
 
