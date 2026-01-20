@@ -1,0 +1,62 @@
+<!-- _layouts/default.html -->
+<!doctype html>
+<html lang="{{ site.lang | default: "en-US" }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>
+      {% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}
+    </title>
+
+    <meta name="description" content="{{ site.description | escape }}" />
+    <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header class="page-header" role="banner">
+      <h1 class="project-name">
+        <a href="{{ "/" | relative_url }}" style="color: inherit; text-decoration: none;">
+          Faye Voulivasi
+        </a>
+      </h1>
+
+      <h2 class="project-tagline">Senior Machine Learning Engineer</h2>
+
+      <p class="project-tagline" style="margin-top: 0.5rem;">
+        Applied ML · Ranking &amp; Personalization · Scalable Decision Systems
+      </p>
+
+      <!-- Primary nav: keep minimal -->
+      <nav class="site-nav" aria-label="Primary" style="margin-top: 1rem;">
+        <a class="btn" href="{{ "/" | relative_url }}">Home</a>
+        <a class="btn" href="{{ "/#selected-technical-notes" | relative_url }}">Notes</a>
+        <a class="btn" href="{{ "/#reference-papers" | relative_url }}">Papers</a>
+        <a class="btn" href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+      </nav>
+    </header>
+
+    <!-- MAIN -->
+    <main id="content" class="main-content" role="main">
+      {{ content }}
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; justify-content: space-between;">
+        <small>
+          <strong>Guiding principle:</strong>
+          Production ML is a decision system first and a modeling exercise second.
+        </small>
+
+        <small>
+          <a href="https://www.linkedin.com/in/rosevoul/" target="_blank" rel="noopener">LinkedIn</a>
+          &nbsp;·&nbsp;
+          <a href="mailto:faye.voulivasi@gmail.com">Email</a>
+        </small>
+      </div>
+    </footer>
+  </body>
+</html>
