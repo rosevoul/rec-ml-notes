@@ -56,7 +56,27 @@ Each note pairs conceptual analysis with a minimal, reproducible artifact.
 
 ## Reference Papers
 
-Foundational papers that shaped how modern machine learning is actually built, trained, evaluated, and shipped. Notes focus on practical takeaways, failure modes, and production relevance.
+### GenAI & Multimodal Foundations
+
+Models that shape modern generative and personalization systems through representation learning, retrieval, multimodal grounding, and preference modeling. Includes generative models and GenAI-adjacent infrastructure used in production.
+
+- **Retrieval-Augmented Generation (RAG)**  
+  [paper](https://arxiv.org/abs/2005.11401) · [notes](paper_notes/rag)
+
+- **CLIP: Learning Transferable Visual Models From Natural Language Supervision**  
+  [paper](https://arxiv.org/abs/2103.00020) · [notes](paper_notes/clip)
+
+- **BERT4Rec: Sequential Recommendation with Bidirectional Encoder Representations**  
+  [paper](https://arxiv.org/abs/1904.06690) · [notes](paper_notes/bert4rec)
+
+- **Two-Tower Models for Retrieval (DSSM-style)**  
+  [paper](https://arxiv.org/abs/1608.07428) · [notes](paper_notes/two-tower)
+
+- **InstructGPT (Preference Learning Perspective)**  
+  [paper](https://arxiv.org/abs/2203.02155) · [notes](paper_notes/instructgpt)
+
+
+### Data Science & ML Foundations
 
 - **Efficient BackProp**  
   [paper](https://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf) · [notes](paper_notes/efficient-backprop)
