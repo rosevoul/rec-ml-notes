@@ -1,16 +1,9 @@
-/* assets/css/style.scss */
 ---
 ---
 
 @import "{{ site.theme }}";
 
-/* Header nav alignment */
-.site-nav .btn {
-  margin-right: 0.35rem;
-  margin-bottom: 0.35rem;
-}
-
-/* Footer spacing */
+/* optional minimal tweaks */
 .site-footer {
-  margin-top: 2.5rem;
+  margin-top: 3rem;
 }
