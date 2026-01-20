@@ -1,3 +1,4 @@
+# rec-ml-notes
 # Machine Learning and GenAI for Recommendation Systems - Notes
 
 These notes document ongoing exploration of selected modeling approaches
