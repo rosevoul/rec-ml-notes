@@ -47,7 +47,7 @@ Re-order items based on reasoning, not similarity.
 
 ## Working illustrative example
 
-- [LLM re-ranking notebook](../../notebooks/llm_rerank_toy.ipynb)
+- [LLM re-ranking notebook](https://github.com/rosevoul/rec-ml-notes/blob/main/notebooks/llm_rerank_toy.ipynb)
 
 The notebook demonstrates:
 - Constraint-aware filtering
