@@ -1,31 +1,32 @@
 ---
 ---
-
+/* 1. Import the actual Slate theme first */
 @import "{{ site.theme }}";
 
-/* Force clean light appearance */
-:root { color-scheme: light; }
-
-/* Your centering primitive (Slate isn't providing .container) */
-.container {
-  max-width: 52rem;        /* readable + professional */
-  margin: 0 auto;          /* centers */
-  padding: 0 1.25rem;      /* breathing room on mobile */
+/* 2. Fix the header/footer colors (Slate uses #header_wrap and #footer_wrap) */
+#header_wrap {
+  background: #212121; /* Classic Slate dark grey */
+  background: -moz-linear-gradient(top, #373737, #212121);
+  background: -webkit-linear-gradient(top, #373737, #212121);
 }
 
-/* Keep header clean and consistent */
-.page-header {
-  background-color: #f6f8fa;
-  background-image: none;
+#footer_wrap {
+  background: #212121;
 }
 
-/* Optional: tighten nav spacing without noise */
+/* 3. Ensure the main content is light */
+#main_content_wrap {
+  background: #f2f2f2;
+  color: #111;
+}
+
+/* 4. Keep your custom centering logic */
+.container, .inner {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* Your custom nav spacing */
 .site-nav { margin-top: 1rem; }
 .site-nav .btn { margin-right: 0.4rem; margin-bottom: 0.4rem; }
-
-/* Footer separation */
-.site-footer {
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid #e5e7eb;
-}
