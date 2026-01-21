@@ -41,7 +41,6 @@ My focus is on:
 - **[Generative Recommendation Systems](./generative_rec/)**  
   → [Notebook](./generative_rec/generative_rec_notes.ipynb)
 
-Each note pairs conceptual analysis with a minimal, reproducible artifact.
 
 <a id="reference-papers"></a>
 ## Reference Papers
