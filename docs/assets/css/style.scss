@@ -1,32 +1,90 @@
 ---
 ---
-/* 1. Import the actual Slate theme first */
+/* 1. Import Slate's core */
 @import "{{ site.theme }}";
 
-/* 2. Fix the header/footer colors (Slate uses #header_wrap and #footer_wrap) */
-#header_wrap {
-  background: #212121; /* Classic Slate dark grey */
-  background: -moz-linear-gradient(top, #373737, #212121);
-  background: -webkit-linear-gradient(top, #373737, #212121);
+/* 2. Professional Typography */
+body {
+  background-color: #ffffff;
+  color: #373737;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
-#footer_wrap {
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Arvo', Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+  color: #212121;
+  font-weight: 700;
+}
+
+/* 3. Dark Header Structure */
+.page-header {
   background: #212121;
+  background: linear-gradient(to bottom, #373737, #212121);
+  padding: 3rem 0;
+  color: #ffffff;
+  text-align: left; /* Slate default style */
 }
 
-/* 3. Ensure the main content is light */
-#main_content_wrap {
-  background: #f2f2f2;
-  color: #111;
+.project-name {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
 }
 
-/* 4. Keep your custom centering logic */
-.container, .inner {
+.project-name a {
+  color: #ffffff !important;
+  text-decoration: none;
+}
+
+.project-tagline {
+  color: #b5e853 !important; /* Slate signature lime-green */
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  opacity: 0.9;
+  margin: 0;
+}
+
+/* 4. Nav Buttons (Slate Style) */
+.btn {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff !important;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #b5e853;
+  text-decoration: none;
+}
+
+/* 5. Main Content Area */
+.main-content {
+  padding: 3rem 0;
+}
+
+/* 6. Footer (Slate Dark) */
+.site-footer {
+  background: #212121;
+  color: #999;
+  padding: 3rem 0;
+  margin-top: 5rem;
+  font-size: 0.85rem;
+}
+
+.site-footer a {
+  color: #b5e853; /* Lime green links in footer */
+}
+
+/* 7. Centering Layout */
+.container {
   max-width: 52rem;
   margin: 0 auto;
-  padding: 0 1.25rem;
+  padding: 0 1.5rem;
 }
-
-/* Your custom nav spacing */
-.site-nav { margin-top: 1rem; }
-.site-nav .btn { margin-right: 0.4rem; margin-bottom: 0.4rem; }
