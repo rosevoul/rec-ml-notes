@@ -3,7 +3,6 @@ layout: default
 title: Home
 ---
 
-<a id="perspective"></a>
 ## Perspective
 
 I work on machine learning systems where modeling choices shape user experience, business outcomes, and long-term system behavior.
@@ -13,7 +12,6 @@ My focus is on:
 - Choosing the appropriate level of complexity for the problem  
 - Making tradeoffs, uncertainty, and failure modes explicit  
 
-<a id="areas-of-interest"></a>
 ## Areas of Interest
 
 - Ranking, retrieval, and recommendation
