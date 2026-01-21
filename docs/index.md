@@ -27,19 +27,19 @@ My focus is on:
 ## Selected Technical Notes
 
 - **[Representation Learning in Recommendation](./representation/)**  
-  → [Notebook](./representation/representation_notes.ipynb)
+  → [Notebook](https://github.com/rosevoul/rec-ml-notes/edit/main/docs/representation/representation_notes.ipynb)
 
 - **[Graph Neural Networks for Recommendation](./gnn/)**  
-  → [Notebook](./gnn/gnn_notes.ipynb)
+  → [Notebook](https://github.com/rosevoul/rec-ml-notes/edit/main/docs/gnn/gnn_notes.ipynb)
 
 - **[Reasoning-Driven Re-ranking with LLMs](./llm_reasoning/)**  
-  → [Notebook](./llm_reasoning/llm_rerank_notes.ipynb)
+  → [Notebook](https://github.com/rosevoul/rec-ml-notes/edit/main/docs/llm_reasoning/llm_rerank_notes.ipynb)
 
 - **[Multimodal Modeling Beyond Accuracy](./multimodal/)**  
-  → [Notebook](./multimodal/multimodal_fusion_notes.ipynb)
+  → [Notebook](https://github.com/rosevoul/rec-ml-notes/edit/main/docs/multimodal/multimodal_fusion_notes.ipynb)
 
 - **[Generative Recommendation Systems](./generative_rec/)**  
-  → [Notebook](./generative_rec/generative_rec_notes.ipynb)
+  → [Notebook](https://github.com/rosevoul/rec-ml-notes/edit/main/docs/generative_rec/generative_rec_notes.ipynb)
 
 
 <a id="reference-papers"></a>
