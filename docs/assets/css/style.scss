@@ -5,10 +5,10 @@
 
 /* 2. Official Slate Typography & Reset */
 body {
-  background-color: #ffffff; /* Forces white content area */
+  background-color: #ffffff; 
   color: #373737;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px; /* Slate uses a slightly smaller base font */
+  font-size: 14px; 
   line-height: 1.5;
   margin: 0;
 }
@@ -21,14 +21,14 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0.5em;
 }
 
-/* 3. The Dark Header (Matching official #header_wrap) */
+/* 3. The Dark Header */
 .page-header {
   background: #212121;
-  background: -moz-linear-gradient(top, #373737, #212121);
   background: -webkit-linear-gradient(top, #373737, #212121);
+  background: linear-gradient(to bottom, #373737, #212121);
   padding: 40px 0;
   color: #ffffff;
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid #000;
 }
 
 .project-name {
@@ -45,16 +45,17 @@ h1, h2, h3, h4, h5, h6 {
 
 .project-tagline {
   font-size: 18px;
-  color: #b5e853 !important; /* The iconic Slate Green */
+  /* Removed Green: Using white with slight opacity for hierarchy */
+  color: rgba(255, 255, 255, 0.8) !important; 
   margin: 5px 0 20px 0;
   font-weight: 300;
 }
 
-/* 4. Navigation Buttons (Slate UI Style) */
+/* 4. Navigation Buttons */
 .btn {
   display: inline-block;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 5px;
   padding: 6px 12px;
   color: #fff !important;
@@ -64,7 +65,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.5);
 }
 
 /* 5. Main Content Area */
@@ -73,9 +75,9 @@ h1, h2, h3, h4, h5, h6 {
   padding: 40px 0;
 }
 
-/* Slate specific link color */
+/* Link Color - Professional Blue */
 .main-content a {
-  color: #1565c0;
+  color: #0066cc;
   text-decoration: none;
 }
 
@@ -83,23 +85,23 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: underline;
 }
 
-/* 6. The Dark Footer (Matching official #footer_wrap) */
+/* 6. The Dark Footer */
 .site-footer {
   background: #212121;
-  color: #b5e853;
+  color: #999; /* Grey text instead of green */
   padding: 40px 0;
   margin-top: 40px;
-  border-top: 1px solid #000000;
+  border-top: 1px solid #000;
 }
 
 .site-footer a {
   color: #ffffff;
-  font-weight: bold;
+  text-decoration: underline;
 }
 
-/* 7. Centering Logic (Matching Slate's 'inner' width) */
+/* 7. Centering Logic */
 .container {
-  max-width: 860px; /* Exact width of the official Slate theme */
+  max-width: 860px;
   margin: 0 auto;
   padding: 0 40px;
 }
