@@ -4,43 +4,28 @@
 @import "{{ site.theme }}";
 
 /* Force clean light appearance */
-:root {
-  color-scheme: light;
+:root { color-scheme: light; }
+
+/* Your centering primitive (Slate isn't providing .container) */
+.container {
+  max-width: 52rem;        /* readable + professional */
+  margin: 0 auto;          /* centers */
+  padding: 0 1.25rem;      /* breathing room on mobile */
 }
 
-body {
-  background: #ffffff;
-  color: #222;
-}
-
-/* Header refinement */
+/* Keep header clean and consistent */
 .page-header {
   background-color: #f6f8fa;
   background-image: none;
 }
 
-.project-name a {
-  color: #111;
-  text-decoration: none;
-}
+/* Optional: tighten nav spacing without noise */
+.site-nav { margin-top: 1rem; }
+.site-nav .btn { margin-right: 0.4rem; margin-bottom: 0.4rem; }
 
-.project-tagline {
-  color: #555;
-}
-
-/* Navigation */
-.site-nav {
-  margin-top: 1rem;
-}
-
-.site-nav .btn {
-  margin-right: 0.4rem;
-}
-
-/* Footer */
+/* Footer separation */
 .site-footer {
   margin-top: 3rem;
   padding-top: 2rem;
   border-top: 1px solid #e5e7eb;
-  color: #666;
 }
