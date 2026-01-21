@@ -1,41 +1,41 @@
 ---
 ---
-/* 1. Import the base theme logic */
+/* 1. Import the actual Slate theme logic */
 @import "{{ site.theme }}";
 
-/* 2. Official Slate Typography & Reset */
+/* 2. Official Slate Typography */
 body {
-  background-color: #ffffff; 
+  background-color: #ffffff; /* White content area */
   color: #373737;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px; 
+  font-size: 14px; /* Official Slate base size */
   line-height: 1.5;
-  margin: 0;
+  -webkit-font-smoothing: antialiased; /* Smoother font rendering */
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: bold;
+  font-weight: 700; /* Bold headers as seen on the demo */
   color: #222222;
   margin-top: 1.5em;
   margin-bottom: 0.5em;
+  letter-spacing: -1px; /* Tighter heading spacing */
 }
 
-/* 3. The Dark Header */
+/* 3. Dark Header (Monochrome) */
 .page-header {
   background: #212121;
-  background: -webkit-linear-gradient(top, #373737, #212121);
   background: linear-gradient(to bottom, #373737, #212121);
+  background: -webkit-linear-gradient(top, #373737, #212121);
   padding: 40px 0;
   color: #ffffff;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #000000;
 }
 
 .project-name {
   font-size: 34px;
-  font-weight: bold;
+  font-weight: 700;
   margin: 0;
-  letter-spacing: -1px;
 }
 
 .project-name a {
@@ -45,28 +45,28 @@ h1, h2, h3, h4, h5, h6 {
 
 .project-tagline {
   font-size: 18px;
-  /* Removed Green: Using white with slight opacity for hierarchy */
-  color: rgba(255, 255, 255, 0.8) !important; 
+  color: rgba(255, 255, 255, 0.7) !important; /* Soft white/gray instead of green */
   margin: 5px 0 20px 0;
   font-weight: 300;
 }
 
-/* 4. Navigation Buttons */
+/* 4. Nav Buttons (Monochrome Slate Style) */
 .btn {
   display: inline-block;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 5px;
-  padding: 6px 12px;
-  color: #fff !important;
+  padding: 7px 15px;
+  color: #ffffff !important;
   font-size: 13px;
+  font-weight: bold;
   text-decoration: none;
   margin-right: 5px;
 }
 
 .btn:hover {
   background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.5);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 /* 5. Main Content Area */
@@ -75,9 +75,8 @@ h1, h2, h3, h4, h5, h6 {
   padding: 40px 0;
 }
 
-/* Link Color - Professional Blue */
 .main-content a {
-  color: #0066cc;
+  color: #1565c0; /* Professional blue links */
   text-decoration: none;
 }
 
@@ -85,23 +84,22 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: underline;
 }
 
-/* 6. The Dark Footer */
+/* 6. Dark Footer (Monochrome) */
 .site-footer {
   background: #212121;
-  color: #999; /* Grey text instead of green */
+  color: #888; /* Gray text */
   padding: 40px 0;
-  margin-top: 40px;
+  margin-top: 50px;
   border-top: 1px solid #000;
 }
 
 .site-footer a {
   color: #ffffff;
-  text-decoration: underline;
 }
 
-/* 7. Centering Logic */
+/* 7. Centering Layout */
 .container {
-  max-width: 860px;
+  max-width: 860px; /* Official Slate content width */
   margin: 0 auto;
   padding: 0 40px;
 }
