@@ -27,6 +27,9 @@ I’ve shipped end-to-end ML systems, from data pipelines and modeling to deploy
 <a id="selected-technical-notes"></a>
 ## Selected Technical Notes
 
+- [Metrics Showcase: Churn-Driven Discount Allocation](notebooks/churn_discount_policy_decision.ipynb)  
+  Using churn risk to decide which customers receive discounts. Focuses on decision policies, cost trade-offs, and expected value rather than model accuracy.
+
 - **[Representation Learning in Recommendation](./representation/)**  
   → [Notebook](https://github.com/rosevoul/rec-ml-notes/edit/main/docs/representation/representation_notes.ipynb)
 
