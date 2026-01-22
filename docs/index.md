@@ -15,15 +15,6 @@ My focus is on:
 I’ve shipped end-to-end ML systems, from data pipelines and modeling to deployment, monitoring, and iteration, with direct ownership of production metrics. In recent work, I owned multiple production ML systems that drove measurable lift in engagement and tens of millions in incremental revenue.
 
 
-## Areas of Interest
-
-- Ranking, retrieval, and recommendation
-- Representation learning at scale
-- Offline and online evaluation
-- ML infrastructure and lifecycle design
-- Robustness, failure modes, and responsible ML
-- Generative and agentic modeling in decision pipelines
-
 <a id="selected-technical-notes"></a>
 ## Selected Technical Notes
 
