@@ -51,6 +51,9 @@ I’ve shipped end-to-end ML systems, from data pipelines and modeling to deploy
 - [Metrics Showcase: Recommenders in Production (Retail)](notebooks/metrics_showcase_recommenders_production_retail.ipynb)  
   Choosing a Top-N ranking policy using business, user, and system metrics (CTR, EPM, diversity, freshness, latency) with explicit guardrails.
 
+- [Metrics Showcase: Monitoring a Ranking Model in Production](notebooks/metrics_showcase_monitoring_ranking_model_production.ipynb)  
+  Monitoring feature drift (PSI), target drift (CTR/CVR), and performance drift (AUC, calibration/value proxies) with explicit alert rules and drill-down diagnostics.
+
 
 <a id="reference-papers"></a>
 ## Reference Papers
