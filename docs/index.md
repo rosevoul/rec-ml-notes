@@ -18,32 +18,26 @@ I’ve shipped end-to-end ML systems, from data pipelines and modeling to deploy
 <a id="selected-technical-notes"></a>
 ## Selected Technical Notes
 
-- **[Representation Learning in Recommendation](./representation/)**  
-  → [Notebook](https://github.com/rosevoul/rec-ml-notes/edit/main/docs/representation/representation_notes.ipynb)
+1) **Recommender Embeddings: From Simple to Modern**
+   - Co-occurrence and matrix factorization → item2vec → graph/network embeddings → multimodal embeddings.
+   - Focus: when each method is appropriate, common failure modes, and how embeddings feed retrieval and ranking.
+   - Notebook: [Embedding Methods for Recommenders](notebooks/recsys_embeddings.ipynb)
 
-- **[Graph Neural Networks for Recommendation](./gnn/)**  
-  → [Notebook](https://github.com/rosevoul/rec-ml-notes/edit/main/docs/gnn/gnn_notes.ipynb)
+2) **Retrieval + Ranking, the Production Way**
+   - Candidate generation (ANN/FAISS-style), two-tower retrieval, feature pipelines, pointwise vs pairwise losses, calibration, latency and throughput tradeoffs.
+   - Focus: system boundaries, offline/online consistency, and safe iteration in production.
+   - Notebook: [Production Retrieval & Ranking Pipeline](notebooks/retrieval_ranking_production.ipynb)
 
-- **[Reasoning-Driven Re-ranking with LLMs](./llm_reasoning/)**  
-  → [Notebook](https://github.com/rosevoul/rec-ml-notes/edit/main/docs/llm_reasoning/llm_rerank_notes.ipynb)
+3) **Inference-Time Enhancements for Recommenders**
+   - Reranking, query and item rewriting, hybrid scoring, structured outputs, caching, latency and cost controls, fallback logic.
+   - Focus: inference-time pipeline steps that improve relevance without destabilizing the system.
+   - Notebook: [Inference-Time Enhancements](notebooks/genai_recsys_inference.ipynb)
 
-- **[Multimodal Modeling Beyond Accuracy](./multimodal/)**  
-  → [Notebook](https://github.com/rosevoul/rec-ml-notes/edit/main/docs/multimodal/multimodal_fusion_notes.ipynb)
+4) **Monitoring + Metrics for Recommenders**
+   - Feature and target drift, segment health, ranking quality metrics, online monitoring, alerting, and incident triage.
+   - Safeguards: policy checks, safety filters, and controlled fallback behavior.
+   - Notebook: [Monitoring & Safeguards for Recommenders](notebooks/recsys_monitoring_guardrails.ipynb)
 
-- **[Generative Recommendation Systems](./generative_rec/)**  
-  → [Notebook](https://github.com/rosevoul/rec-ml-notes/edit/main/docs/generative_rec/generative_rec_notes.ipynb)
-
-
-<a id="metrics-showcases"></a>
-## Metrics Showcases
-- [Metrics Showcase: Churn-Driven Discount Allocation](notebooks/churn_discount_policy_decision.ipynb)  
-  Using churn risk to decide which customers receive discounts. Focuses on decision policies, cost trade-offs, and expected value rather than model accuracy.
-
-- [Metrics Showcase: Recommenders in Production (Retail)](notebooks/metrics_showcase_recommenders_production_retail.ipynb)  
-  Choosing a Top-N ranking policy using business, user, and system metrics (CTR, EPM, diversity, freshness, latency) with explicit guardrails.
-
-- [Metrics Showcase: Monitoring a Ranking Model in Production](notebooks/metrics_showcase_monitoring_ranking_model_production.ipynb)  
-  Monitoring feature drift (PSI), target drift (CTR/CVR), and performance drift (AUC, calibration/value proxies) with explicit alert rules and drill-down diagnostics.
 
 
 <a id="reference-papers"></a>
