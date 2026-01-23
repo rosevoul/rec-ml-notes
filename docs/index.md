@@ -49,40 +49,36 @@ I’ve shipped end-to-end ML systems, from data pipelines and modeling to deploy
 <a id="reference-papers"></a>
 ## Reference Papers
 
+### Recommender Systems & Ranking
+
+- **Deep Neural Networks for YouTube Recommendations (2016)**  
+  [Paper](https://research.google/pubs/pub45530/) · [Notes](notes/youtube-recsys.md)
+
+- **Sampling-Bias-Corrected Neural Modeling (Two-Tower Retrieval, 2019)**  
+  [Paper](https://arxiv.org/abs/1905.13021) · [Notes](notes/two-tower-retrieval.md)
+
+- **Deep Learning Recommendation Model (DLRM, Meta, 2019)**  
+  [Paper](https://arxiv.org/abs/1906.00091) · [Notes](notes/dlrm.md)
+
+
 ### GenAI & Multimodal Foundations
 
-- **Retrieval-Augmented Generation (RAG)**  
-  [paper](https://arxiv.org/abs/2005.11401) · [notes](./paper_notes/rag)
+- **Attention Is All You Need (2017)**  
+  [Paper](https://arxiv.org/abs/1706.03762) · [Notes](notes/transformers.md)
 
-- **CLIP: Learning Transferable Visual Models From Natural Language Supervision**  
-  [paper](https://arxiv.org/abs/2103.00020) · [notes](./paper_notes/clip)
+- **CLIP: Learning Transferable Visual Models from Natural Language Supervision (2021)**  
+  [Paper](https://arxiv.org/abs/2103.00020) · [Notes](notes/clip.md)
 
-- **BERT4Rec: Sequential Recommendation with Bidirectional Transformers**  
-  [paper](https://arxiv.org/abs/1904.06690) · [notes](./paper_notes/bert4rec)
+- **Retrieval-Augmented Generation (RAG, 2020)**  
+  [Paper](https://arxiv.org/abs/2005.11401) · [Notes](notes/rag.md)
 
-- **Two-Tower Retrieval Models (DSSM)**  
-  [paper](https://www.microsoft.com/en-us/research/publication/learning-semantic-representations-using-convolutional-neural-networks-for-web-search/) · [notes](./paper_notes/two-tower)
 
-- **InstructGPT: Training Language Models with Human Feedback**  
-  [paper](https://arxiv.org/abs/2203.02155) · [notes](./paper_notes/instructgpt)
+### ML Foundations & Reliability
 
-### Data Science & ML Foundations
+- **XGBoost: A Scalable Tree Boosting System (2016)**  
+  [Paper](https://arxiv.org/abs/1603.02754) · [Notes](notes/xgboost.md)
 
-- **Efficient BackProp**  
-  [paper](http://yann.lecun.com/exdb/publis/pdf/lecun-98b.pdf) · [notes](./paper_notes/efficient-backprop)
+- **A Few Useful Things to Know About Machine Learning (2012)**  
+  [Paper](https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf) · [Notes](notes/useful-things-ml.md)
 
-- **XGBoost: A Scalable Tree Boosting System**  
-  [paper](https://arxiv.org/abs/1603.02754) · [notes](./paper_notes/xgboost)
-
-- **BERT: Pre-training of Deep Bidirectional Transformers**  
-  [paper](https://arxiv.org/abs/1810.04805) · [notes](./paper_notes/bert)
-
-- **A Unified Approach to Interpreting Model Predictions (SHAP)**  
-  [paper](https://arxiv.org/abs/1705.07874) · [notes](./paper_notes/shap)
-
-- **Spark: Cluster Computing with Working Sets**  
-  [paper](https://www.usenix.org/system/files/conference/hotcloud10/hotcloud10-zaharia.pdf) · [notes](./paper_notes/spark)
-
-- **Attention Is All You Need**  
-  [paper](https://arxiv.org/abs/1706.03762) · [notes](./paper_notes/attention)
 
