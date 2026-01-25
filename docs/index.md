@@ -70,9 +70,9 @@ I’ve shipped end-to-end ML systems, from data pipelines and modeling to deploy
 ### ML Foundations
 
 - **XGBoost: A Scalable Tree Boosting System (2016)**  
-  [Paper](https://arxiv.org/abs/1603.02754) · [Notes](notes/xgboost.md)
+  [Paper](https://arxiv.org/abs/1603.02754) · [Notes](paper_notes/xgboost.md)
 
 - **A Few Useful Things to Know About Machine Learning (2012)**  
-  [Paper](https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf) · [Notes](notes/useful-things-ml.md)
+  [Paper](https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf) · [Notes](paper_notes/useful-things-ml.md)
 
 
