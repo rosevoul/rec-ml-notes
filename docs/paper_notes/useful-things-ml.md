@@ -1,43 +1,75 @@
-# A Few Useful Things to Know About Machine Learning
+# A Few Useful Things to Know About Machine Learning (2012)
+Paper: https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf
 
-Link: https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf
+## Core Ideas
+- Generalization error is the only metric that ultimately matters.
+- Data coverage and quality typically dominate algorithm choice.
+- Every model embeds assumptions that eventually surface.
 
-Failure-oriented reference.
+## Highlights
 
-Recurring patterns:
-- leakage is usually accidental
-- metrics encode implicit objectives
-- training error is rarely the target
-- additional data often dominates algorithmic changes
+- **Generalization error is the only quantity that matters**  
+  Training error and optimization success are poor proxies for real-world performance. Models with strong offline metrics often degrade immediately once exposed to live traffic because evaluation captured optimization, not generalization.
 
-Common evaluation failure:
+- **Data distribution assumptions are implicit and fragile**  
+  Learning assumes train and test data come from the same distribution. Random cross-validation commonly hides temporal or cohort-based shifts that later trigger sharp performance collapse.
 
-dataset processed before split.
+- **More features and more complexity increase overfitting risk**  
+  High-dimensional representations make fitting noise easier, even as training error decreases. In production, additional features often improve offline metrics while amplifying leakage, feedback loops, or spurious correlations.
+
+- **Evaluation procedures encode beliefs about the future**  
+  Data splits and validation schemes reflect assumptions about how the world evolves. When evaluation does not mirror deployment conditions, performance estimates become confident but misleading.
+
+## What Works
+- Problem framing anchored to an actual decision.
+- Evaluation schemes aligned with future usage.
+- Treating preprocessing, feature generation, and modeling as a single pipeline.
+- Monitoring for drift, leakage, and error concentration.
+
+## What Doesn’t
+- Optimizing proxy metrics disconnected from decisions.
+- Assuming simpler models are inherently safer.
+- Treating cross-validation as a guarantee rather than a diagnostic.
+- Separating data preparation from modeling responsibility.
+
+## Evaluation Failure That Repeats
+
+```text
+Problem Definition
+        │
+        ▼
+ Data Collection ──▶ Feature Design ──▶ Model Training
+        │                   │                 │
+        │                   ▼                 ▼
+        └── Leakage / Bias  Offline Metrics  Overfitting
+                                   │
+                                   ▼
+                              Deployment
+                                   │
+                                   ▼
+                         Drift, feedback loops,
+                         metric misalignment
+```
 
 Typical sequence:
-- full dataset collected
-- missing values imputed using global statistics
-- features normalized using global mean / variance
-- random train / test split applied afterward
+- Dataset collected in full.
+- Missing values imputed globally.
+- Features normalized using global statistics.
+- Train/test split applied afterward.
 
-At this point:
-test set already contaminated  
-evaluation no longer independent  
-reported performance inflated  
-
-Downstream effects:
-complex models look better than they are  
-model selection drifts toward overfitting  
-offline gains fail to reproduce  
+Outcome:
+- Test contamination.
+- Inflated evaluation metrics.
+- Model selection biased toward overfitting.
 
 Root cause:
-preprocessing treated as “data prep” instead of part of the model  
-pipeline boundaries unclear  
+Preprocessing treated as preliminary work rather than part of the model.
 
 Correction:
-split first  
-fit preprocessing only on training data  
-reuse frozen transforms for validation and test  
-evaluate the full pipeline, not just the estimator  
+- Split first.
+- Fit preprocessing on training data only.
+- Freeze transforms for validation and test.
+- Evaluate the full pipeline.
 
-Primary source of error: evaluation design.
+## Takeaway
+Most ML failures are predictable. They originate from evaluation design and problem framing, not from algorithm choice.
