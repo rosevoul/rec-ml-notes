@@ -11,18 +11,8 @@ Paper: https://arxiv.org/abs/1603.02754
 
 ## How Boosting Works
 
-```text
-Input Data
-   │
-   ▼
-[ Tree 1 ] ── residuals ──▶ [ Tree 2 ] ── residuals ──▶ [ Tree 3 ] ──▶ ...
-   │                           │                           │
-   ▼                           ▼                           ▼
- Initial                  Error correction            Fine-grained
- approximation             (largest gaps)               adjustments
+![Boosting diagram](images/xgboost.png)
 
-Final Prediction = Sum of all tree outputs (with regularization)
-```
 
 Each tree corrects remaining errors from the previous ensemble. Regularization constrains how aggressively those corrections accumulate.
 
