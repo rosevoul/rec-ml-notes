@@ -43,18 +43,6 @@ I’ve shipped end-to-end ML systems, from data pipelines and modeling to deploy
 <a id="reference-papers"></a>
 ## Reference Papers
 
-### Recommender Systems & Ranking
-
-- **Deep Neural Networks for YouTube Recommendations (2016)**  
-  [Paper](https://research.google/pubs/pub45530/) · [Notes](notes/youtube-recsys.md)
-
-- **Sampling-Bias-Corrected Neural Modeling (Two-Tower Retrieval, 2019)**  
-  [Paper](https://arxiv.org/abs/1905.13021) · [Notes](notes/two-tower-retrieval.md)
-
-- **Deep Learning Recommendation Model (DLRM, Meta, 2019)**  
-  [Paper](https://arxiv.org/abs/1906.00091) · [Notes](notes/dlrm.md)
-
-
 ### GenAI & Multimodal Foundations
 
 - **Attention Is All You Need (2017)**  
@@ -67,7 +55,19 @@ I’ve shipped end-to-end ML systems, from data pipelines and modeling to deploy
   [Paper](https://arxiv.org/abs/2005.11401) · [Notes](notes/rag.md)
 
 
-### ML Foundations & Reliability
+  ### Recommender Systems
+
+- **Deep Neural Networks for YouTube Recommendations (2016)**  
+  [Paper](https://research.google/pubs/pub45530/) · [Notes](notes/youtube-recsys.md)
+
+- **Sampling-Bias-Corrected Neural Modeling (Two-Tower Retrieval, 2019)**  
+  [Paper](https://arxiv.org/abs/1905.13021) · [Notes](notes/two-tower-retrieval.md)
+
+- **Deep Learning Recommendation Model (DLRM, Meta, 2019)**  
+  [Paper](https://arxiv.org/abs/1906.00091) · [Notes](notes/dlrm.md)
+
+
+### ML Foundations
 
 - **XGBoost: A Scalable Tree Boosting System (2016)**  
   [Paper](https://arxiv.org/abs/1603.02754) · [Notes](notes/xgboost.md)
@@ -75,4 +75,6 @@ I’ve shipped end-to-end ML systems, from data pipelines and modeling to deploy
 - **A Few Useful Things to Know About Machine Learning (2012)**  
   [Paper](https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf) · [Notes](notes/useful-things-ml.md)
 
+- **Applied Math for Production ML** 
+  [Notes](notes/applied-math-production-ml.md)
 
