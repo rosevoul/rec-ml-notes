@@ -15,17 +15,41 @@
 - At inference, image embeddings are compared against text embeddings for zero-shot tasks.
 
 
+## Build Schematic
+
+![CLIP Schematic](images/clip-schematic.png)
+
+
+## Build Checklist
+
+**Artifacts**
+- Image encoder `f_img(·) -> R^D`
+- Text encoder `f_txt(·) -> R^D`
+- Temperature parameter `τ`
+
+**Training Batch**
+- `B` paired samples: `(img_i, txt_i)` for `i = 1..B`
+
+**Compute**
+- Normalize embeddings and compute similarity matrix  
+  `S = img @ txt^T / τ`
+- Loss: cross-entropy with diagonal entries as positives  
+  (image → text and text → image)
+
+**Serving**
+- Freeze encoders
+- Embed images and/or text
+- Perform nearest-neighbor search in the shared embedding space  
+
+
 ## Tradeoffs
 - Natural language supervision scales easily, but is noisy and imprecise.
 - Contrastive training produces general embeddings, but weak task specialization.
 - Zero-shot inference avoids retraining, but underperforms fine-tuned models on narrow tasks.
 
-## Mental Model
+
+## Takeaway
 Instead of teaching the model explicit labels, CLIP teaches images and text to agree.
 If an image and caption often appear together, their embeddings move closer.
 Downstream tasks become similarity lookups rather than learned classifiers.
 
-## Takeaway
-CLIP trades task-specific accuracy for broad transfer and reuse.
-It is most valuable when labels are scarce or tasks change frequently.
-Performance comes from representation alignment, not task optimization.

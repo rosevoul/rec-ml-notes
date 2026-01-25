@@ -16,17 +16,35 @@
 - Generation marginalizes over multiple retrieved passages.
 - Knowledge lives in an external index, not only in model weights.
 
+## Build Schematic
+
+![RAG Schematic](images/rag-schematic.png)
+
+
+## Build Checklist
+
+**Artifacts**
+- Retriever encoder `g(q) -> R^D` (dense)
+- Document encoder `h(d) -> R^D` (dense) or precomputed document embeddings
+- Vector index over document embeddings
+- Generator LM that consumes `(q, retrieved text)`
+
+**Offline**
+- Chunk documents → embed → build ANN index
+
+**Online**
+- Embed query → retrieve top-k → construct context → generate
+
+**Key Interfaces** 
+- Retriever output: `{doc_id, score, text_span}`
+- Generator input: `q + concatenated spans (with separators)`  
+
 ## Tradeoffs
 - External retrieval improves factual grounding, but adds latency and system complexity.
 - Separating knowledge from parameters improves updateability, but weakens end-to-end optimization.
 - Generation quality depends on retriever recall as much as generator capacity.
 
-## Mental Model
-The model does not rely only on what it memorized during training.
-It looks things up first, then writes using what it found.
-If retrieval fails, generation quality degrades regardless of model size.
-
 ## Takeaway
 RAG moves knowledge access out of model weights and into retrieval.
-This improves factual control and updateability, but shifts failure modes upstream.
 System quality is bounded by retriever recall, not generator fluency.
+Most failures originate upstream of the language model.

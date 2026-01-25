@@ -15,8 +15,29 @@
 - Inputs are token embeddings with positional encodings added.
 - Self-attention layers compute interactions between all token pairs.
 - Feed-forward layers apply the same transformation at each position.
-- Encoder stacks process inputs; decoder stacks attend to both prior outputs and encoder states.
+- Encoder stacks process inputs and decoder stacks attend to both prior outputs and encoder states.
 - Training is fully parallel over sequence length.
+
+
+## Build Schematic
+
+![Attention Schematic](images/attention-schematic.png)
+
+## Build Checklist
+
+**Artifacts**
+- Projection matrices `Wq`, `Wk`, `Wv`
+- Softmax over the last dimension of `QK^T`
+
+**Shapes You Must Keep Straight**
+- `X: (T, D)`
+- `Q, K, V: (T, d)`
+- `A: (T, T)`
+- `Output: (T, d)`
+
+**Cost Surface**
+- Memory and compute dominated by the `(T × T)` attention matrix
+- Long context implies attention optimizations or chunking strategies
 
 
 ## Tradeoffs
