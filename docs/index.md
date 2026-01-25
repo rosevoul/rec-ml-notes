@@ -45,26 +45,26 @@ I’ve shipped end-to-end ML systems, from data pipelines and modeling to deploy
 
 ### GenAI & Multimodal Foundations
 
-- **Attention Is All You Need (2017)**  
-  [Paper](https://arxiv.org/abs/1706.03762) · [Notes](notes/transformers.md)
-
 - **CLIP: Learning Transferable Visual Models from Natural Language Supervision (2021)**  
-  [Paper](https://arxiv.org/abs/2103.00020) · [Notes](notes/clip.md)
+[Paper](https://arxiv.org/abs/2103.00020) · [Notes](paper_notes/clip.md)
 
 - **Retrieval-Augmented Generation (RAG, 2020)**  
-  [Paper](https://arxiv.org/abs/2005.11401) · [Notes](notes/rag.md)
+[Paper](https://arxiv.org/abs/2005.11401) · [Notes](paper_notes/rag.md)
+
+- **Attention Is All You Need (2017)**  
+[Paper](https://arxiv.org/abs/1706.03762) · [Notes](paper_notes/attention.md)
 
 
 ### Recommender Systems
-
-- **Deep Neural Networks for YouTube Recommendations (2016)**  
-  [Paper](https://research.google/pubs/pub45530/) · [Notes](paper_notes/youtube-two-stage-retrieval.md)
 
 - **Sampling-Bias-Corrected Neural Modeling (Two-Tower Retrieval, 2019)**  
   [Paper](https://dl.acm.org/doi/10.1145/3298689.3346996) · [Notes](paper_notes/two-tower.md)
 
 - **Deep Learning Recommendation Model (DLRM, Meta, 2019)**  
   [Paper](https://arxiv.org/abs/1906.00091) · [Notes](paper_notes/dlrm.md)
+
+- **Deep Neural Networks for YouTube Recommendations (2016)**  
+[Paper](https://research.google/pubs/pub45530/) · [Notes](paper_notes/youtube-two-stage-retrieval.md)
 
 
 ### ML Foundations
@@ -74,5 +74,3 @@ I’ve shipped end-to-end ML systems, from data pipelines and modeling to deploy
 
 - **A Few Useful Things to Know About Machine Learning (2012)**  
   [Paper](https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf) · [Notes](paper_notes/useful-things-ml.md)
-
-
