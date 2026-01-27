@@ -28,8 +28,10 @@ I’ve shipped end-to-end ML systems, from data pipelines and modeling to deploy
    **[Retrieval](technical_notebooks/recsys_retrieval.ipynb)** · **[User embeddings](technical_notebooks/recsys_ranking.ipynb)**
 
 3) **GenAI Enhancements for Recommenders**
+   - Pre-retrieval query context.
+   [LLM Query Context](technical_notebooks/recsys_genai_pre_retrieval.ipynb)
    - Reranking, query and item rewriting, hybrid scoring, structured outputs, caching, latency and cost controls, fallback logic.
-   [LLM Reranker](technical_notebooks/recsys_llm_reranker.ipynb)
+   [LLM Reranker](technical_notebooks/recsys_genai_reranker.ipynb)
 
 4) **Monitoring + Metrics for Recommenders**
    - Feature and target drift, segment health, ranking quality metrics, online monitoring, alerting, and incident triage.
