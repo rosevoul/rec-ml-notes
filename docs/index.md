@@ -22,22 +22,18 @@ I’ve shipped end-to-end ML systems, from data pipelines and modeling to deploy
    - **Behavior item embeddings** (Item2Vec / graph) define the item space.
    - **User embeddings** place each user in that space.
    - **Content embeddings** help when user history is thin or items are new.
-   **[Behavior embeddings](notebooks/recsys_behavior_embeddings.ipynb)** · **[User embeddings](notebooks/recsys_user_embeddings.ipynb)** · **[Content embeddings](notebooks/recsys_content_embeddings.ipynb)**
+   **[Behavior embeddings](technical_notebooks/recsys_behavior_embeddings.ipynb)** · **[User embeddings](technical_notebooks/recsys_user_embeddings.ipynb)** · **[Content embeddings](technical_notebooks/recsys_content_embeddings.ipynb)**
 
 2) **Retrieval + Ranking, the Production Way**
-   - Candidate generation (ANN/FAISS-style), two-tower retrieval, feature pipelines, pointwise vs pairwise losses, calibration, latency and throughput tradeoffs.
-   - Focus: system boundaries, offline/online consistency, and safe iteration in production.
-   - Notebook: [Production Retrieval & Ranking Pipeline](notebooks/retrieval_ranking_production.ipynb)
+   **[Retrieval](technical_notebooks/recsys_retrieval.ipynb)** · **[User embeddings](technical_notebooks/recsys_ranking.ipynb)**
 
-3) **GenAI Inference Enhancements for Recommenders**
+3) **GenAI Enhancements for Recommenders**
    - Reranking, query and item rewriting, hybrid scoring, structured outputs, caching, latency and cost controls, fallback logic.
-   - Focus: inference-time pipeline steps that improve relevance without destabilizing the system.
-   - Notebook: [GenAI Inference Enhancements](notebooks/genai_recsys_inference.ipynb)
+   [LLM Reranker](technical_notebooks/recsys_llm_reranker.ipynb)
 
 4) **Monitoring + Metrics for Recommenders**
    - Feature and target drift, segment health, ranking quality metrics, online monitoring, alerting, and incident triage.
-   - Safeguards: policy checks, safety filters, and controlled fallback behavior.
-   - Notebook: [Monitoring & Safeguards for Recommenders](notebooks/recsys_monitoring_guardrails.ipynb)
+   [Monitoring & Safeguards](technical_notebooks/recsys_monitoring_guardrails.ipynb)
 
 
 
