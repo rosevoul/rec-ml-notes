@@ -18,20 +18,21 @@ I’ve shipped end-to-end ML systems, from data pipelines and modeling to deploy
 <a id="selected-technical-notes"></a>
 ## Selected Technical Notes
 
-1) **Recommender Embeddings: From Simple to Modern**
-   - Co-occurrence and matrix factorization → item2vec → graph/network embeddings → multimodal embeddings.
-   - Focus: when each method is appropriate, common failure modes, and how embeddings feed retrieval and ranking.
-   - Notebook: [Embedding Methods for Recommenders](notebooks/recsys_embeddings.ipynb)
+1) **Recommender Embeddings**
+   - **Behavior item embeddings** (Item2Vec / graph) define the item space.
+   - **User embeddings** place each user in that space.
+   - **Content embeddings** help when user history is thin or items are new.
+   **[Behavior embeddings](notebooks/recsys_behavior_embeddings.ipynb)** · **[User embeddings](notebooks/recsys_user_embeddings.ipynb)** · **[Content embeddings](notebooks/recsys_content_embeddings.ipynb)**
 
 2) **Retrieval + Ranking, the Production Way**
    - Candidate generation (ANN/FAISS-style), two-tower retrieval, feature pipelines, pointwise vs pairwise losses, calibration, latency and throughput tradeoffs.
    - Focus: system boundaries, offline/online consistency, and safe iteration in production.
    - Notebook: [Production Retrieval & Ranking Pipeline](notebooks/retrieval_ranking_production.ipynb)
 
-3) **Inference-Time Enhancements for Recommenders**
+3) **GenAI Inference Enhancements for Recommenders**
    - Reranking, query and item rewriting, hybrid scoring, structured outputs, caching, latency and cost controls, fallback logic.
    - Focus: inference-time pipeline steps that improve relevance without destabilizing the system.
-   - Notebook: [Inference-Time Enhancements](notebooks/genai_recsys_inference.ipynb)
+   - Notebook: [GenAI Inference Enhancements](notebooks/genai_recsys_inference.ipynb)
 
 4) **Monitoring + Metrics for Recommenders**
    - Feature and target drift, segment health, ranking quality metrics, online monitoring, alerting, and incident triage.
