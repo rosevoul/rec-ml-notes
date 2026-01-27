@@ -18,24 +18,23 @@ I’ve shipped end-to-end ML systems, from data pipelines and modeling to deploy
 <a id="selected-technical-notes"></a>
 ## Selected Technical Notes
 
-1) **Recommender Embeddings**
-   - **Behavior item embeddings** (Item2Vec / graph) define the item space.
-   - **User embeddings** place each user in that space.
-   - **Content embeddings** help when user history is thin or items are new.
-   **[Behavior embeddings](technical_notebooks/recsys_behavior_embeddings.ipynb)** · **[User embeddings](technical_notebooks/recsys_user_embeddings.ipynb)** · **[Content embeddings](technical_notebooks/recsys_content_embeddings.ipynb)**
+### Recommender Systems in Production
 
-2) **Retrieval + Ranking, the Production Way**
-   **[Retrieval](technical_notebooks/recsys_retrieval.ipynb)** · **[User embeddings](technical_notebooks/recsys_ranking.ipynb)**
+**Embeddings**  
+Item, user, and content embeddings for retrieval, personalization, and cold start.  
+[Behavior](technical_notebooks/recsys_behavior_embeddings.ipynb) · [User](technical_notebooks/recsys_user_embeddings.ipynb) · [Content](technical_notebooks/recsys_content_embeddings.ipynb)
 
-3) **GenAI Enhancements for Recommenders**
-   - Pre-retrieval query context.
-   [LLM Query Context](technical_notebooks/recsys_genai_pre_retrieval.ipynb)
-   - Reranking, query and item rewriting, hybrid scoring, structured outputs, caching, latency and cost controls, fallback logic.
-   [LLM Reranker](technical_notebooks/recsys_genai_reranker.ipynb)
+**Retrieval & Ranking**  
+Serving pipeline from candidate generation through final scoring and rules.  
+[Retrieval](technical_notebooks/recsys_retrieval.ipynb) · [Ranking](technical_notebooks/recsys_ranking.ipynb)
 
-4) **Monitoring + Metrics for Recommenders**
-   - Feature and target drift, segment health, ranking quality metrics, online monitoring, alerting, and incident triage.
-   [Monitoring & Safeguards](technical_notebooks/recsys_monitoring_guardrails.ipynb)
+**GenAI Enhancements**  
+Inference-time enhancements with strict budgets and deterministic fallback.  
+[Query Context](technical_notebooks/recsys_genai_pre_retrieval.ipynb) · [LLM Reranker](technical_notebooks/recsys_genai_reranker.ipynb)
+
+**Monitoring & Safeguards**  
+Drift, segment health, ranking quality, alerting, and safe degradation.  
+[Monitoring](technical_notebooks/recsys_monitoring_guardrails.ipynb)
 
 
 
