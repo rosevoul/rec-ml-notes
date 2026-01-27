@@ -34,7 +34,8 @@ Inference-time enhancements with strict budgets and deterministic fallback.
 
 **Monitoring & Safeguards**  
 Drift, segment health, ranking quality, alerting, and safe degradation.  
-[Monitoring](technical_notebooks/recsys_monitoring_guardrails.ipynb)
+[Monitoring](technical_notebooks/recsys_monitoring_guardrails.md)
+
 
 
 
