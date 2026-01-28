@@ -44,7 +44,7 @@ Ranker
 
 Retrieval emits candidates. It does not decide what is eligible or safe.
 
-## What goes in and what comes out
+## Inputs & Outputs
 
 Input (request-time):
 ```json

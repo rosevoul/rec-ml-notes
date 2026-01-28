@@ -35,7 +35,7 @@ Candidates + scores
 
 Consumes ranked candidates and query context. Emits a reordered list only. Does not add, remove, or filter items.
 
-## What goes in and what comes out
+## Inputs & Outputs
 
 Input:
 ```json

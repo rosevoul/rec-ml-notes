@@ -34,7 +34,7 @@ User events → History buffer → User embedding → ANN retrieval → Candidat
 
 The user embedding is a query vector. 
 
-## Inputs and Outputs
+## Inputs & Outputs
 
 Input:
 ```json

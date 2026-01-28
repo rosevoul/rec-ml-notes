@@ -43,7 +43,7 @@ Serving retrieval / ranking
 
 Embedding versioning is the safety mechanism. Rollback is a version switch.
 
-## What goes in and what comes out
+## Inputs & Outputs
 
 Input (catalog row):
 ```json

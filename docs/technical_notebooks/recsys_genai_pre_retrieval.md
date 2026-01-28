@@ -46,7 +46,7 @@ Ranker
 
 The rest of the pipeline stays unchanged. If this component is disabled, the original query flows through.
 
-## What goes in and what comes out
+## Inputs & Outputs
 
 Input:
 ```json

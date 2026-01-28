@@ -33,7 +33,7 @@ Interaction logs → Sessionize → Behavioral embedding job → Embedding store
 
 ````
 
-## What goes in and what comes out
+## Inputs & Outputs
 
 Input:
 ```json
