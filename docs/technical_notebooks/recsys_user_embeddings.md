@@ -1,7 +1,3 @@
-Here is the **full User Embeddings markdown**, with the **method names added immediately after each method title**, and **no other changes**.
-This is ready to replace the current file.
-
-```md
 # User Embeddings (for Retrieval)
 
 ## TLDR

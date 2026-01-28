@@ -1,32 +1,31 @@
-```md
-# Behavioral Item Embeddings (Co-occurrence, Item2Vec, Graph, Fusion)
-
+# Behavioral Item Embeddings (for Retrieval)
 
 ## TLDR
-This component builds item embeddings from user interaction data for retrieval.  
-It runs offline and the output is a versioned embedding table used by ANN retrieval.
+This component builds item embeddings from user behavior for retrieval.  
+For example, it learns which items are viewed or bought together.  
+It runs offline, produces versioned embedding tables, and is used by ANN retrieval.  
+It does not personalize, rank items, or apply business rules.
 
 **Methods**
-- **Co-occurrence + SVD:** deterministic offline embeddings from item co-occurrence.
+- **Co-occurrence + SVD:** deterministic embeddings from item co-occurrence.
 - **Item2Vec:** sequence-based embeddings that capture order and local context.
-- **Graph embeddings:** random-walk embeddings from co-purchase or co-cart graphs.
-- **Behavior + content fusion:** combines behavior and content embeddings into a new version.
+- **Graph embeddings:** random-walk embeddings from item graphs.
+- **Behavior + content fusion:** combines behavior and content embeddings into a new version.  
 
+---
 
-## What this component does and does not do
-- Converts sessionized interaction data into fixed-size item embeddings.
-- Supports multiple embedding methods that all produce the same output format.
+## What this component builds
+- Converts interaction sessions into fixed-size item embeddings.
+- Supports multiple embedding methods with the same output format.
 - Produces a single embedding table keyed by item_id and version.
-- Does not build user embeddings. That is handled by a separate component.
-- Does not rank items or apply policy.
 
-## When this component is used
+## When this component is needed
 - There is enough behavioral data to learn item relationships.
-- Content or metadata alone is not enough for good retrieval.
+- Metadata alone is not enough for good retrieval.
 - Retrieval quality depends on item-to-item similarity.
 - Offline training jobs can run and publish new embedding versions.
 
-## Integration points
+## How this component fits in the retrieval flow
 
 ```
 
@@ -35,9 +34,9 @@ Interaction logs → Sessionize → Behavioral embedding job → Embedding store
 
 ````
 
-## Example inputs and outputs
+## What goes in and what comes out
 
-Input (sessionized):
+Input:
 ```json
 { "session_id": "abc", "items": [12, 45, 98, 45, 311] }
 ````
@@ -45,14 +44,16 @@ Input (sessionized):
 Output:
 
 ```json
-{ "item_id": 45, "embedding": [0.013, -0.091, ...], "version": "beh_v9" }
+{ "item_id": 45, "embedding": [0.012, -0.081, ...], "version": "beh_v9" }
 ```
 
-## Core implementation
+For this component, the output is processed into fixed-size vectors, L2-normalized, and written as a new versioned table.
 
+## How item embeddings are built
 
-### Method A: Co-occurrence → PPMI → SVD (baseline)
+### 1) Simple co-occurrence from sessions
 
+**Method:** Co-occurrence + SVD.
 Deterministic offline method that produces stable embeddings, for example from items frequently viewed together.
 
 ```python
@@ -72,24 +73,28 @@ def build_cooccurrence(
                     continue
                 C[center, seq[j]] += 1.0
     return C
+```
 
+```python
 def ppmi(C: np.ndarray, eps: float = 1e-8) -> np.ndarray:
     total = C.sum() + eps
     row = C.sum(axis=1, keepdims=True) + eps
     col = C.sum(axis=0, keepdims=True) + eps
     pmi = np.log((C * total) / (row * col))
     return np.maximum(pmi, 0.0).astype(np.float32)
+```
 
+```python
 def svd_embed(PPMI: np.ndarray, k: int = 128) -> np.ndarray:
     U, S, _ = np.linalg.svd(PPMI, full_matrices=False)
     E = U[:, :k] * np.sqrt(S[:k])[None, :]
     return l2_normalize(E.astype(np.float32))
 ```
 
-### Method B: Item2Vec (skip-gram with negative sampling)
+### 2) Learning from item order in sessions
 
-Use this method when order and local context matter, for example when users view a phone and then a phone case in the same session.
-
+**Method:** Item2Vec.
+Use when order and local context matter, for example when users view a phone and then a phone case in the same session.
 
 ```python
 def make_skipgram_pairs(
@@ -105,7 +110,9 @@ def make_skipgram_pairs(
                 if j != i:
                     pairs.append((center, seq[j]))
     return np.asarray(pairs, dtype=np.int64)
+```
 
+```python
 def train_item2vec(
     pairs: np.ndarray,
     n_items: int,
@@ -146,8 +153,9 @@ def train_item2vec(
     return l2_normalize(W_in)
 ```
 
-### Method C: Graph embeddings (random walks + skip-gram)
+### 3) Learning from item graphs
 
+**Method:** Graph embeddings.
 Use when item relationships are better represented as a graph, for example co-purchase or co-cart data.
 
 ```python
@@ -160,7 +168,9 @@ def build_graph(
         idx = np.argsort(-C[i])[:topk]
         neighbors.append([int(j) for j in idx if C[i, j] > 0])
     return neighbors
+```
 
+```python
 def random_walks(
     neighbors: list[list[int]],
     n_walks: int = 10,
@@ -182,11 +192,10 @@ def random_walks(
     return walks
 ```
 
-The resulting walks are passed into the same Item2Vec training logic.
+### 4) Combining behavior with content embeddings
 
-### Method D: Fuse with content embeddings
-
-Fusion controls what retrieval sees. Behavior embeddings capture preferences, while content embeddings help with new or unseen items.
+**Method:** Behavior + content fusion.
+Use to handle cold-start items, for example new items with no interaction history.
 
 ```python
 def fuse_behavior_content(
@@ -203,43 +212,18 @@ def fuse_behavior_content(
     return l2_normalize(fused.astype(np.float32))
 ```
 
+## What can go wrong and how to notice it
 
-### Common helpers
-
-For this component, the output is processed into fixed-size vectors, L2-normalized, and written as a new versioned table.
-
-```python
-import numpy as np
-
-def l2_normalize(X: np.ndarray, eps: float = 1e-12) -> np.ndarray:
-    n = np.linalg.norm(X, axis=1, keepdims=True)
-    return X / (n + eps)
-
-def write_item_table(
-    item_ids: np.ndarray,
-    embeddings: np.ndarray,
-    version: str
-) -> None:
-    for i, item_id in enumerate(item_ids):
-        embedding_store.put(
-            item_id=int(item_id),
-            vec=embeddings[i],
-            version=version
-        )
-```
-
-## Guardrails and failure modes
-
-* **Popularity domination:** PPMI misconfigured or window too wide, embeddings collapse toward popularity.
+* **Popularity domination:** embeddings collapse toward popular items.
 * **Sessionization errors:** cross-user leakage creates false co-occurrence.
-* **Cold-start gaps:** behavior-only methods produce no vectors for new items. Fusion or backfill is required.
-* **Index skew:** embeddings updated without rebuilding ANN, serving stale neighbors.
-* **Silent regressions:** changes produce plausible vectors. Require offline checks such as nearest-neighbor inspection and stability diffs.
+* **Cold-start gaps:** new items have no behavior signal.
+* **Index skew:** embeddings updated without rebuilding ANN.
+* **Silent regressions:** vectors look valid but neighbors change unexpectedly.
 
-This component owns embedding quality and stability. If retrieval quality drops because of bad or stale embeddings, this component is responsible.
+This component owns item embedding quality and stability.
 
-## Known limitations
+## What this approach does not handle well
 
-* Behavior embeddings encode exposure bias.
-* Data is assumed stable between training runs. If data changes, a new version must be trained and published.
-* Fusion weights are heuristic unless learned. A good practice is to keep them stable and versioned.
+* Exposure bias from historical data.
+* Fast distribution shifts without retraining.
+* Fusion weights are heuristic unless learned.
