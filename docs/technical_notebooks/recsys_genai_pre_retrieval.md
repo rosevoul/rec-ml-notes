@@ -1,19 +1,32 @@
 # GenAI Query Expansion (Pre-Retrieval)
-**Scope:** Expands a raw text query into a small set of deterministic rewrites before embedding + retrieval. Used to widen recall upstream of ANN. Optional and fail-open.
 
-## What this component does (and does not do)
-- Produces 1–3 query variants intended for the existing embedding + retrieval stack.
-- Keeps the original query as the anchor. Always.
+## TLDR
+This component expands a raw text query into a small set of safe rewrites for retrieval. 
+For example, it turns "office chair" into 2 extra queries that widen recall. 
+It runs before embedding and ANN retrieval and must fail open. 
+
+**Methods**
+- **Query normalization:** clean input so caching and prompting are stable.
+- **Prompted rewrite:** produce short query variants with deterministic generation.
+- **Post-processing:** dedupe, cap, and keep the original query first.
+- **Fail-open bypass:** return the original query on any error.
+- **Caching:** cache variants by normalized query, locale, surface, and version.
+- **Wiring into retrieval:** embed each variant and merge candidates.
+
+---
+
+## What this component builds
+- Produces 1 to 3 query variants for the existing embedding and retrieval stack.
+- Keeps the original query as the anchor and always includes it first.
 - Adds no new retrieval logic. It only changes the text fed into embedding.
-- Does not rank, filter, apply inventory constraints, or enforce policy.
 
-## When this component is used
-- Query is short, generic, or ambiguous (e.g., 1–2 tokens).
-- No strong user profile / behavior signal exists for the request.
+## When this component is needed
+- Query is short, generic, or ambiguous, for example 1 to 2 tokens.
+- No strong user profile signal exists for the request.
 - Retrieval recall is the bottleneck, not ranking.
 - The surface can tolerate extra latency, or expansions can be cached.
 
-## Integration points
+## How this component fits in the retrieval flow
 
 ```
 Raw query
@@ -31,16 +44,16 @@ Merge + dedupe candidates ─┘
 Ranker
 ```
 
-The rest of the pipeline stays unchanged. If this component is disabled, the original query flows through as-is.
+The rest of the pipeline stays unchanged. If this component is disabled, the original query flows through.
 
-## Example input / output
+## What goes in and what comes out
 
 Input:
 ```json
 { "query": "office chair", "locale": "en_US", "surface": "search" }
 ```
 
-Output (what the next stage consumes):
+Output:
 ```json
 {
   "queries": [
@@ -52,10 +65,13 @@ Output (what the next stage consumes):
 }
 ```
 
-## Core implementation (handoff-grade)
+For this component, the output is a small list of short query strings with the original query preserved first.
 
-### 1) Query normalization (don’t feed garbage to the LLM)
-This protects cost and makes caching actually work.
+## How query expansion works
+
+### 1) Cleaning queries before calling the model
+**Method:** Query normalization. 
+Use to avoid garbage input, for example repeated spaces or very long text.
 
 ```python
 import re
@@ -70,8 +86,9 @@ def normalize_query(q: str) -> str:
     return q[:256]  # hard cap; prevents prompt bloat
 ```
 
-### 2) Request contract + versioning
-Version everything because prompts drift.
+### 2) Setting config and versioning
+**Method:** Request contract and versioning. 
+Use versioning because prompts drift and caches must stay consistent.
 
 ```python
 @dataclass(frozen=True)
@@ -86,8 +103,9 @@ class QEConfig:
 CFG = QEConfig()
 ```
 
-### 3) Prompt: judge-style rewriting, no explanations
-Keep it boring. Boring is reproducible.
+### 3) Asking for rewrites with strict rules
+**Method:** Prompted rewrite. 
+Use a boring prompt so outputs are repeatable.
 
 ```python
 SYSTEM_PROMPT = """
@@ -101,8 +119,9 @@ Rules:
 """
 ```
 
-### 4) LLM call with strict output hygiene
-Treat the LLM like an unreliable dependency.
+### 4) Calling the model and cleaning its output
+**Method:** LLM call with output hygiene. 
+Treat the model like an unreliable dependency.
 
 ```python
 def llm_expand(raw_query: str, *, cfg: QEConfig = CFG) -> list[str]:
@@ -120,8 +139,9 @@ def llm_expand(raw_query: str, *, cfg: QEConfig = CFG) -> list[str]:
     return lines
 ```
 
-### 5) Post-processing: dedupe, cap, preserve anchor
-This is the real logic that keeps behavior stable across time.
+### 5) Keeping the original query first and bounding cost
+**Method:** Post-processing. 
+Use to dedupe, cap variants, and preserve the anchor query.
 
 ```python
 def dedupe_keep_order(xs: list[str]) -> list[str]:
@@ -153,8 +173,9 @@ def build_variants(query: str, *, cfg: QEConfig = CFG) -> list[str]:
     return variants
 ```
 
-### 6) Fail-open behavior with explicit bypass
-On failure, you get baseline retrieval, not a 500.
+### 6) What to do when the model fails
+**Method:** Fail-open bypass. 
+Use to return baseline retrieval instead of an error.
 
 ```python
 def safe_build_variants(query: str, *, cfg: QEConfig = CFG) -> list[str]:
@@ -166,8 +187,9 @@ def safe_build_variants(query: str, *, cfg: QEConfig = CFG) -> list[str]:
         return [q0]
 ```
 
-### 7) Caching: make the expensive part optional
-If you don’t cache, this is not a real production component.
+### 7) Caching variants so this is usable at scale
+**Method:** Caching. 
+Use to make the expensive part optional.
 
 ```python
 def cache_key(query: str, locale: str, surface: str, version: str) -> str:
@@ -185,8 +207,9 @@ def get_variants(query: str, locale: str, surface: str, *, cfg: QEConfig = CFG) 
     return variants
 ```
 
-### 8) Wiring into retrieval (what actually runs)
-This shows the real control flow a new owner needs to reproduce.
+### 8) Wiring into retrieval
+**Method:** Expand, embed, retrieve, merge. 
+Use to run one retrieval per variant and merge candidates.
 
 ```python
 def pre_retrieval_candidates(query: str, locale: str, surface: str) -> list[int]:
@@ -201,8 +224,8 @@ def pre_retrieval_candidates(query: str, locale: str, surface: str) -> list[int]
     return dedupe_candidates(all_ids)
 ```
 
-## Outputs (contract level)
-What downstream sees is unchanged: candidates for ranking. The only difference is candidate coverage.
+## What downstream receives
+Downstream still receives candidates for ranking. The difference is candidate coverage.
 
 ```json
 {
@@ -215,15 +238,15 @@ What downstream sees is unchanged: candidates for ranking. The only difference i
 }
 ```
 
-## Guardrails and failure modes (the ones that matter)
-- **Semantic drift:** expansions wander from inventory reality; you see more candidates but worse downstream quality.
-- **Over-expansion:** too many variants → higher embed/ANN/rank cost; cap variants hard.
-- **Cache miss storms:** if normalization changes, hit rate collapses; treat normalization as part of the API.
-- **Prompt drift:** small edits change output distribution; version prompts and cache keys together.
-- **Latency creep:** LLM p95 rises; enforce timeout and fail open.
-- **Locale leakage:** expansions in the wrong language; include locale in cache key and prompt if needed.
+## What can go wrong and how to notice it
+- Semantic drift where expansions do not match inventory.
+- Over-expansion where too many variants increase cost.
+- Cache miss storms when normalization changes and hit rate collapses.
+- Prompt drift when small edits change the output distribution.
+- Latency creep when model p95 rises.
+- Locale leakage where expansions use the wrong language.
 
-## Known limitations
-- No inventory grounding; expansions can be “reasonable” but irrelevant.
-- Works best for short queries; long queries often need constraint preservation instead of expansion.
-- Adds complexity and operational surface area (cache, versioning, drift management).
+## What this approach does not handle well
+- Inventory grounding. Expansions can be reasonable but irrelevant.
+- Long queries. Long queries often need constraint preservation instead of expansion.
+- Operational overhead. Cache and versioning add surface area.
